@@ -93,6 +93,11 @@ public:
             printf("Name: %s, Age: %d, Sex: %c, GPA: %.2f\n", (*now)->name, (*now)->age, (*now)->sex, (*now)->gpa);
         }
     }
+    virtual void ShowNode1() {
+        if (*now != nullptr) {
+            printf("Name: %s, Age: %d, Sex: %c, GPA: %.2f\n", (*now)->name, (*now)->age, (*now)->sex, (*now)->gpa);
+        }
+    }
 };
 
 class NewList : public LinkedList {
@@ -104,7 +109,15 @@ public:
     void ShowNode() override {
         studentNode* temp = start;
         while (temp != nullptr) {
-            printf("Name: %s, Age: %d, Sex: %c, GPA: %.2f\n", temp->name, temp->age, temp->sex, temp->gpa);
+            printf("%s %d %c %.2f\n", temp->name, temp->age, temp->sex, temp->gpa);
+            temp = temp->next;
+        }
+    }
+
+    void ShowNode1() override {
+        studentNode* temp = start;
+        while (temp != nullptr) {
+            printf("%s\n", temp->name, temp->age, temp->sex, temp->gpa);
             temp = temp->next;
         }
     }
@@ -116,17 +129,17 @@ int main() {
     LinkedList* listC = nullptr;
 
     listA.InsNode("one", 1, 'A', 1.1);
-    listA.InsNode("two", 2, 'B', 2.2);
+    listA.InsNode("six", 2, 'B', 2.2);
     listA.InsNode("three", 3, 'C', 3.3);
     listA.GoNext();
     listA.ShowNode();
 
-    listB.InsNode("four", 4, 'D', 4.4);
-    listB.InsNode("five", 5, 'E', 5.5);
-    listB.InsNode("six", 6, 'F', 6.6);
+    listB.InsNode("two", 2, 'B', 2.2);
+    listB.InsNode("six", 5, 'E', 5.5);
+    listB.InsNode("one", 1, 'A', 1.10);
     listB.GoNext();
     listB.DelNode();
-    listB.ShowNode();
+    listB.ShowNode1();
 
     listC = &listA;
     listC->GoNext();
